@@ -1,0 +1,26 @@
+name: "actions"
+description: "tips"
+author: "Takenoko"
+inputs:
+  github-token:
+    description: "Token to access your GitHub repository."
+  owner:
+    description: "target owner."
+  repo:
+    description: "target repository."
+  dir:
+    description: "target dir."
+  file:
+    description: "target file."
+  content-type:
+    description: "content type."
+runs:
+  using: "node12"
+  main: "../lib/release.js"
+  env:
+    GITHUB_TOKEN: ${{ inputs.github-token }}
+    OWNER: ${{ inputs.owner }}
+    REPO: ${{ inputs.repo }}
+    DIR: ${{ inputs.dir }}
+    FILE: ${{ inputs.file }}
+    CONTENT_TYPE: ${{ inputs.content-type }}
