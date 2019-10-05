@@ -1,13 +1,14 @@
-const request = require('request');
-const fs = require('fs');
-const path = require('path');
+import * as core from '@actions/core';
+import request from 'request';
+import path from 'path';
+import fs from 'fs';
 
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const OWNER = process.env.OWNER;
-const REPO = process.env.REPO;
-const DIR = process.env.DIR;
-const FILE = process.env.FILE;
-const CONTENT_TYPE = process.env.CONTENT_TYPE;
+const GITHUB_TOKEN = core.getInput('github-token') || '';
+const OWNER = core.getInput('owner') || '';
+const REPO = core.getInput('repo') || '';
+const DIR = core.getInput('dir') || '';
+const FILE = core.getInput('file') || '';
+const CONTENT_TYPE = core.getInput('content-type') || '';
 
 async function latestReleases(): Promise<any> {
     return new Promise(resolve => {
@@ -21,8 +22,8 @@ async function latestReleases(): Promise<any> {
             },
             (error, response, body) => {
                 const result = JSON.parse(body);
-                // console.log('body: ', result);
-                console.log('code: ', response.statusCode);
+                core.debug(`body: ${result}`);
+                core.debug(`code: ${response.statusCode}`);
                 if (!error && response.statusCode == 200) {
                     resolve(result);
                 }
@@ -45,8 +46,8 @@ async function releaseAssets(RELEASE_ID): Promise<any> {
             },
             (error, response, body) => {
                 const result = JSON.parse(body);
-                // console.log('body: ', result);
-                console.log('code: ', response.statusCode);
+                core.debug(`body: ${result}`);
+                core.debug(`code: ${response.statusCode}`);
                 if (!error && response.statusCode == 200) {
                     resolve(body);
                 }
@@ -67,8 +68,9 @@ async function deleteReleaseAssets(ASSET_ID): Promise<any> {
                 },
             },
             (error, response, body) => {
-                // const result = JSON.parse(body);
-                console.log('code: ', response.statusCode);
+                const result = JSON.parse(body);
+                core.debug(`body: ${result}`);
+                core.debug(`code: ${response.statusCode}`);
                 if (!error && response.statusCode == 204) {
                     resolve('');
                 }
@@ -78,9 +80,9 @@ async function deleteReleaseAssets(ASSET_ID): Promise<any> {
 }
 
 (async () => {
-    console.log(FILE);
+    core.debug(FILE);
     const result = await latestReleases();
-    console.log('RELEASE_ID', result.id);
+    core.debug('RELEASE_ID', result.id);
     for (const asset of result.assets) {
         if (asset.name == `${FILE}`) await deleteReleaseAssets(asset.id);
     }

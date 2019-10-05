@@ -18,8 +18,9 @@
     },
     "homepage": "https://github.com/nokotech/actions#readme",
     "devDependencies": {
+        "@actions/core": "^1.1.3",
         "@types/node": "^12.7.11",
         "request": "^2.88.0",
-        "typescript": "^3.6.3"
+        "typescript": "^3.7.0-beta"
     }
 }

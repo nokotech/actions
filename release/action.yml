@@ -17,10 +17,3 @@ inputs:
 runs:
   using: "node12"
   main: "../lib/release.js"
-  env:
-    GITHUB_TOKEN: ${{ inputs.github-token }}
-    OWNER: ${{ inputs.owner }}
-    REPO: ${{ inputs.repo }}
-    DIR: ${{ inputs.dir }}
-    FILE: ${{ inputs.file }}
-    CONTENT_TYPE: ${{ inputs.content-type }}
