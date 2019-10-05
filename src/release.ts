@@ -82,7 +82,7 @@ async function deleteReleaseAssets(ASSET_ID): Promise<any> {
 (async () => {
     core.debug(FILE);
     const result = await latestReleases();
-    core.debug('RELEASE_ID', result.id);
+    core.debug(`RELEASE_ID: result.id`);
     for (const asset of result.assets) {
         if (asset.name == `${FILE}`) await deleteReleaseAssets(asset.id);
     }
