@@ -77,8 +77,6 @@ async function deleteReleaseAssets(ASSET_ID): Promise<any> {
                 },
             },
             (error, response, body) => {
-                const result = JSON.parse(body);
-                core.debug(result);
                 core.info(`code: ${response.statusCode}`);
                 if (!error && response.statusCode == 204) {
                     resolve('');
