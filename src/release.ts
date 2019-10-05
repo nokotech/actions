@@ -15,6 +15,7 @@ const FILE = core.getInput('file') || '';
 const CONTENT_TYPE = core.getInput('content-type') || '';
 
 async function latestReleases(): Promise<any> {
+    core.info(`>> latestReleases`);
     return new Promise(resolve => {
         request(
             {
@@ -26,17 +27,19 @@ async function latestReleases(): Promise<any> {
             },
             (error, response, body) => {
                 const result = JSON.parse(body);
-                core.debug(`body: ${result}`);
-                core.debug(`code: ${response.statusCode}`);
+                core.debug(result);
+                core.info(`code: ${response.statusCode}`);
                 if (!error && response.statusCode == 200) {
                     resolve(result);
                 }
+                core.info(`<< latestReleases`);
             },
         );
     });
 }
 
 async function releaseAssets(RELEASE_ID): Promise<any> {
+    core.info(`>> releaseAssets`);
     return new Promise(resolve => {
         request(
             {
@@ -50,17 +53,19 @@ async function releaseAssets(RELEASE_ID): Promise<any> {
             },
             (error, response, body) => {
                 const result = JSON.parse(body);
-                core.debug(`body: ${result}`);
-                core.debug(`code: ${response.statusCode}`);
+                core.debug(result);
+                core.info(`code: ${response.statusCode}`);
                 if (!error && response.statusCode == 200) {
                     resolve(body);
                 }
+                core.info(`<< releaseAssets`);
             },
         );
     });
 }
 
 async function deleteReleaseAssets(ASSET_ID): Promise<any> {
+    core.info(`>> deleteReleaseAssets`);
     return new Promise(resolve => {
         request(
             {
@@ -73,20 +78,21 @@ async function deleteReleaseAssets(ASSET_ID): Promise<any> {
             },
             (error, response, body) => {
                 const result = JSON.parse(body);
-                core.debug(`body: ${result}`);
-                core.debug(`code: ${response.statusCode}`);
+                core.debug(result);
+                core.info(`code: ${response.statusCode}`);
                 if (!error && response.statusCode == 204) {
                     resolve('');
                 }
+                core.info(`<< deleteReleaseAssets`);
             },
         );
     });
 }
 
 (async () => {
-    core.debug(FILE);
+    core.info(`FILE: ${FILE}`);
     const result = await latestReleases();
-    core.debug(`RELEASE_ID: result.id`);
+    core.info(`RELEASE_ID: result.id`);
     for (const asset of result.assets) {
         if (asset.name == `${FILE}`) await deleteReleaseAssets(asset.id);
     }
