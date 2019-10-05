@@ -24,3 +24,13 @@ jobs:
         npm test
       env:
         CI: true
+    - name: coverage
+      run: |
+        npm coverage
+    - name: codecov
+      uses: codecov/codecov-action@v1.0.2
+      with:
+        token: ${{secrets.CODECOV_TOKEN}}
+        file: ./coverage/clover.xml
+        flags: unittests
+        name: codecov-umbrella
