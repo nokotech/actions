@@ -1,5 +1,8 @@
 # actions
 
+[![codecov](https://codecov.io/gh/nokotech/actions/branch/master/graph/badge.svg)](https://codecov.io/gh/nokotech/actions)
+
+
 ## Releases Actions
 
 ```
