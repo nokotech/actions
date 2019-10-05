@@ -3,9 +3,9 @@ import request from 'request';
 import path from 'path';
 import fs from 'fs';
 
-console.log('--------------------');
-console.log('release.js');
-console.log('--------------------');
+core.info('--------------------');
+core.info('release.js');
+core.info('--------------------');
 
 const GITHUB_TOKEN = core.getInput('github-token') || '';
 const OWNER = core.getInput('owner') || '';
@@ -90,7 +90,7 @@ async function deleteReleaseAssets(ASSET_ID): Promise<any> {
 (async () => {
     core.info(`FILE: ${FILE}`);
     const result = await latestReleases();
-    core.info(`RELEASE_ID: result.id`);
+    core.info(`RELEASE_ID: ${result.id}`);
     for (const asset of result.assets) {
         if (asset.name == `${FILE}`) await deleteReleaseAssets(asset.id);
     }
