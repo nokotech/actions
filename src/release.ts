@@ -3,6 +3,10 @@ import request from 'request';
 import path from 'path';
 import fs from 'fs';
 
+console.log('--------------------');
+console.log('release.js');
+console.log('--------------------');
+
 const GITHUB_TOKEN = core.getInput('github-token') || '';
 const OWNER = core.getInput('owner') || '';
 const REPO = core.getInput('repo') || '';
