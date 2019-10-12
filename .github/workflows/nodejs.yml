@@ -41,4 +41,6 @@ jobs:
       run: |
         git checkout -b release
         git remote set-url origin https://TakenokoTech:${{ secrets.GITHUB_TOKEN }}@github.com/nokotech/actions.git
+        git add lib/
+        git commit -m "release commit"
         git push --set-upstream origin release
