@@ -40,8 +40,8 @@ jobs:
       if: matrix.node == '12.x'
       run: |
         rm ./lib/.gitignore
-        git checkout -b release
         git remote set-url origin https://${{ env.GITHUB_ACTOR }}:${{ secrets.GITHUB_TOKEN }}@github.com/nokotech/actions.git
+        git checkout -b release
         git add lib/
         git commit -m "release commit"
         git push --set-upstream origin release
