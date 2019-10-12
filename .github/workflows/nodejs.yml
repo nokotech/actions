@@ -42,6 +42,7 @@ jobs:
         rm ./lib/.gitignore
         git config --global user.name "TakenokoTech"
         git config --global user.email "takenoko.tech@gmail.com"
+        git remote set-url origin https://TakenokoTech:${{ secrets.GITHUB_TOKEN }}@github.com/nokotech/actions.git
         git checkout -b release
         git add lib/
         git commit -m "release commit"
