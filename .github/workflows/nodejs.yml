@@ -39,7 +39,7 @@ jobs:
     - name: git push release
       if: matrix.node == '12.x'
       run: |
-        rm $HOME/lib/.gitignore
+        rm ./lib/.gitignore
         git checkout -b release
         git remote set-url origin https://${{ env.GITHUB_ACTOR }}:${{ secrets.GITHUB_TOKEN }}@github.com/nokotech/actions.git
         git add lib/
