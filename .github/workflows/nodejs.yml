@@ -46,4 +46,4 @@ jobs:
         git checkout -b release
         git add lib/
         git commit -m "release commit"
-        git push --set-upstream origin release
+        git push --force-with-lease origin release
