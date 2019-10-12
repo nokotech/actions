@@ -40,6 +40,8 @@ jobs:
       if: matrix.node == '12.x'
       run: |
         rm ./lib/.gitignore
+        git config --global user.name "TakenokoTech"
+        git config --global user.email "takenoko.tech@gmail.com"
         git checkout -b release
         git add lib/
         git commit -m "release commit"
