@@ -16,7 +16,7 @@ jobs:
       .
 
       - name: Latest Publish
-        uses: nokotech/actions/release@master
+        uses: nokotech/actions/release@release
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owner: <<owner>>
